@@ -1,0 +1,21 @@
+{
+  "name": "calcprop_ginzajs3",
+  "description": "Implementing Calculated Property on Ginza.js#3 (Demo)",
+  "author": "Masayuki Nii",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Masayuki Nii"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/INTER-Mediator/calcprop_ginzajs3.git"
+  },
+  "dependencies": {
+    "inter-mediator-expressionparser": "1.0.2",
+    "inter-mediator-nodegraph": "1.0.0",
+    "inter-mediator-formatter": "1.0.2",
+    "inter-mediator-locale": "1.0.0"
+  }
+}
