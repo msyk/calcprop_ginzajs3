@@ -1,5 +1,5 @@
 const parser = require('inter-mediator-expressionparser')
-const nodegrapsh = require('inter-mediator-nodegraph')
+const nodegraph = require('inter-mediator-nodegraph')
 
 let exp, vals, i, elements
 
@@ -46,17 +46,17 @@ for (i = 0 ; i < exps.length ; i++){
 Error: undefined variable: x
 */
 
-nodegrapsh.clear()
+nodegraph.clear()
 vals = {a: 3, b: 4}
 exps = {z: 'x-y', x: 'a+b', y: 'a*b'}
 for (key in exps){
   elements = parser.parse(exps[key]).variables()
   for (i = 0 ; i < elements.length ; i++){
-    nodegrapsh.addEdge(key, elements[i])
+    nodegraph.addEdge(key, elements[i])
   }
 }
 do {
-  leafNodes = nodegrapsh.getLeafNodesWithRemoving()
+  leafNodes = nodegraph.getLeafNodesWithRemoving()
   for (i = 0; i < leafNodes.length; i++) {
     if(Object.keys(vals).indexOf(leafNodes[i])<0){
       vals[leafNodes[i]] = parser.evaluate(exps[leafNodes[i]], vals)
@@ -65,12 +65,8 @@ do {
   console.log(leafNodes, '>>>', vals)
 } while (leafNodes.length > 0)
 /*
-[ 'a', 'b' ]
-{ a: 3, b: 4 }
-[ 'x', 'y' ]
-{ a: 3, b: 4, x: 7, y: 12 }
-[ 'z' ]
-{ a: 3, b: 4, x: 7, y: 12, z: -5 }
-[]
-{ a: 3, b: 4, x: 7, y: 12, z: -5 }
+[ 'a', 'b' ] '>>>' { a: 3, b: 4 }
+[ 'x', 'y' ] '>>>' { a: 3, b: 4, x: 7, y: 12 }
+[ 'z' ] '>>>' { a: 3, b: 4, x: 7, y: 12, z: -5 }
+[] '>>>' { a: 3, b: 4, x: 7, y: 12, z: -5 }
 */
